@@ -1,7 +1,7 @@
 <?php
-echo '<link rel="stylesheet" href="../css/bugs_page.css">';
+echo '<link rel="stylesheet" href="/bugapp/css/bugs_page.css">';
  
- include("db.php");
+include("db.php");
 $databasee = new database('localhost', 'root', 'vsspl');
 $databasee->connectdb();
 $databasee->select('bug_tracker');
@@ -10,69 +10,7 @@ echo'
 <html>
 <head>
 	<title>bugs page</title>
-	<style>
-#messageBox{
-	border-right: 1px solid #000000;
-	position:absolute;
-	width: 217px;
-	height: 100px;
-	z-index: 1;
-	background-color: white;
-	border-style: solid;
-	border-width: 1px;
-	display:none;
-}
-#closeButt{
-	 width: 100%;
-	 height: 10px;
-	 z-index: 1;
-	 cursor: pointer;
-	 left: 0px;
-	 top: 0px;
-	 background-color: white; 
-}
-#contents{
-	width: auto;
-	height: auto;
-	z-index: 2;
-}
-</style>
-	<script >
-	function mouseOver(obj,str1)
-	{
-		
-		  
-			document.getElementById("mouse").offsetHeight;
-			if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-   {
-   	messageBox.style.top=document.getElementById("tabledata").offsetTop;
-messageBox.style.left=obj.offsetLeft;
-
-
-    document.getElementById("contents").innerHTML=xmlhttp.responseText;
-	messageBox.style.display="block";
-    }
-  }
-xmlhttp.open("GET","/bugsapp/bugsapp/php/update_bugs.php?q="+str1 ,true);
-xmlhttp.send();
-
-
-	}
-	function mouseOut()
-	{
-		messageBox.style.display="none";
-	}
-
+	<script>
 function filter(str1,str2)
 {
 if (str1=="")
@@ -243,8 +181,8 @@ echo'
 
     while($row = mysql_fetch_assoc($result))
     {
-  $data=$row['ID'];
-    echo '<tr id=content><td id="cid">'.$row['ID'].'</td><td id="cflag">'.$row['flag'].'</td><td id="cdescription"><a id="mouse" onmouseover="mouseOver(this,'.$row['ID'].')" onmouseout="mouseOut()" href="/bugsapp/bugsapp/php/update_bugs.php?q='.$data.'">'.$row['description'].'</a></td><td id="cproject">'.$row['project'].'</td><td id="ccategory">'.$row['category'].'</td><td id="creportedby">'.$row['reported_by'].'</td><td id="creportedon">'.$row['reported_on'].'</td><td id="cpriority">'.$row['priority'].'</td><td id="cassignedto">'.$row['assigned_to'].'</td><td id="cstatus">'.$row['status'].'<td id="clastupdatedby">'.$row['last_updated_by'].'</td><td id="clastupdatedon">'.$row['last_updated_on'].'</td></tr>';
+  
+    echo '<tr id=content><td id="cid">'.$row['ID'].'</td><td id="cflag">'.$row['flag'].'</td><td id="cdescription">'.$row['description'].'</td><td id="cproject">'.$row['project'].'</td><td id="ccategory">'.$row['category'].'</td><td id="creportedby">'.$row['reported_by'].'</td><td id="creportedon">'.$row['reported_on'].'</td><td id="cpriority">'.$row['priority'].'</td><td id="cassignedto">'.$row['assigned_to'].'</td><td id="cstatus">'.$row['status'].'<td id="clastupdatedby">'.$row['last_updated_by'].'</td><td id="clastupdatedon">'.$row['last_updated_on'].'</td></tr>';
    
     }	
 echo'</table>
@@ -277,10 +215,7 @@ $page_string = '';
 
 	return $page_string;
 }
-echo'<div id="messageBox">
-
-<div id="contents"></div>
-</div>
+echo'
 </body>
 </html>';
 
